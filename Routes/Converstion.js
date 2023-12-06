@@ -22,7 +22,7 @@ router.get("/:userId", async (req, res, next) => {
   try {
     const conversations = await ConversationModel.find({
       members: { $in: [req.params.userId] },
-    });
+    }).sort({updatedAt: -1});
 
     res.status(200).json(conversations);
   } catch (err) {
